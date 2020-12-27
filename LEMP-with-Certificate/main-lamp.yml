@@ -1,0 +1,9 @@
+---
+- hosts: control
+  become: yes
+  roles:
+   - openssl
+   - nginx
+   - mysql
+...
+

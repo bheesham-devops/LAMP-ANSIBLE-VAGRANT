@@ -1,0 +1,17 @@
+## installing open ssl
+
+- name: Installing OpenSSL with dependencies
+  package:
+    name: '{{ item }}'  
+    state: present
+    update_cache: True
+  with_items:
+   - openssl
+   - python3-pip
+   
+## installing additional Dependencies 
+- name: Install additional dependencies
+  pip:
+   name: pyopenssl
+   state: latest
+

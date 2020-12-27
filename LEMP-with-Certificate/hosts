@@ -1,0 +1,5 @@
+[control]
+control .vagrant/machines/control/virtualbox/private_key
+ansible_connection=local
+ansible_become=true
+

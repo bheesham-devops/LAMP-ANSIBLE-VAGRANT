@@ -1,0 +1,8 @@
+---
+- name: Installing nginx
+  package:
+    update_cache: true
+    name: nginx
+    state: latest
+...
+

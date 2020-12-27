@@ -1,0 +1,14 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define "control" do |control|
+    control.vm.box = "ubuntu/bionic64"
+    control.vm.hostname = "control"
+    control.vm.network "forwarded_port", guest:80,host:8080
+    control.vm.network "forwarded_port", guest:443,host:8043
+end 
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "main-lamp.yml"
+  end
+end

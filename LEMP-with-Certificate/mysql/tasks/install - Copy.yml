@@ -1,0 +1,26 @@
+---
+- name: Install Pre-requisites
+  package: 
+   name: '{{ item }}'
+   update_cache: true
+   state: latest
+  with_items: aptitude
+ 
+
+#Mysql Installation
+
+- name: Install Mysql & PHP Packages
+  package: 
+   name: '{{ item }}' 
+   update_cache: true 
+   state: latest
+  with_items:
+   - mysql-server
+   - python3-pymysql
+   - php
+   - php-mysql
+   - php-fpm
+   - php-common
+   - php-cli
+   - php-curl
+

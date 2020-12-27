@@ -1,0 +1,18 @@
+- name: Generate an OpenSSL private key.
+  openssl_privatekey:
+    path: /etc/ssl/private/localhost.key
+
+- name: Generate an OpenSSL CSR.
+  openssl_csr:
+    path: /etc/ssl/private/localhost.csr
+    privatekey_path: /etc/ssl/private/localhost.key
+    common_name: localhost
+
+
+- name: Generate a Self Signed OpenSSL certificate.
+  openssl_certificate:
+    path: /etc/ssl/certs/localhost.crt
+    privatekey_path: /etc/ssl/private/localhost.key
+    csr_path: /etc/ssl/private/localhost.csr
+    provider: selfsigned
+

@@ -1,0 +1,16 @@
+## Configure Nginx default page
+- name: Exampel of commenting a line in Ansible.
+  become: yes 
+
+  copy:   
+    src: "default"
+    dest: "/etc/nginx/sites-available/"
+
+- name: Setup Default page Page
+  copy:   
+    src: "index.php"
+    dest: "/var/www/html/index.php"
+  
+  notify: 
+   restart
+

@@ -1,0 +1,14 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define "devops" do |devops|
+    devops.vm.box = "ubuntu/bionic64"
+    devops.vm.hostname = "devops"
+    devops.vm.network "forwarded_port", guest:80,host:8080
+    #control.vm.network "forwarded_port", guest:443,host:8043
+end 
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "main.yml"
+  end
+end

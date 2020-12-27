@@ -1,0 +1,35 @@
+---
+# Setup LAMP Stack
+- hosts: all
+  tasks:
+    - name: install lamp stack
+      become: yes
+      apt: name={{ item }} state=present update_cache=yes
+      with_items:
+        - apache2
+        - mysql-server
+        - php
+        - php-mysql
+        - php-fpm
+        - php-common
+        - php-cli
+        - php-curl
+
+    - name: start services
+      service: name={{ item }} state=started enabled=yes
+      become: yes
+      with_items:
+        - apache2
+        - mysql
+
+    - name: deploy index.html
+      become: yes
+      copy:
+        src: "./files/index.html"
+        dest: /var/www/html/index.html
+
+    - name: deploy index.php
+      become: yes
+      copy:
+        src: "./files/index.php"
+        dest: /var/www/html/index.php
